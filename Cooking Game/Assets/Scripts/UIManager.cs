@@ -3,19 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Computer : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject computerMenu;
     [SerializeField] private GameObject orderMenu;
+    
 
     [SerializeField] private String[] currentBurger;
     private int currentIndex = 0;
+    private GameManager GM;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,18 @@ public class Computer : MonoBehaviour
     {
         
     }
+
+
+    public void playButton()
+    {
+        GM.updateGameState(1); // Start tutorial
+    }
+
+    public void quitButton()
+    {
+        Application.Quit();
+    }
+
 
     public void takeOrderButton()
     {
