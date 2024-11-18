@@ -81,8 +81,19 @@ public class UIManager : MonoBehaviour
     }
 
 
-    private void clearArray()
+    public void clearArray()
     {
+        while(currentBurger.Length > 0)
+        {
+            currentBurger[currentIndex] = null;
+        }
         currentIndex = 0;
+    }
+
+    public void finishBurger() 
+    { 
+        //close menu
+        //set ticket to active
+        //pick up and place it wherever in kitchen to make the order
     }
 }

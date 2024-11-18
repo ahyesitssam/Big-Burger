@@ -6,18 +6,17 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject pauseText;
+    [SerializeField] private GameObject Player;
     public int gameState;
     private bool paused;
     
 
-    // Start is called before the first frame update
     void Start()
     {
-        gameState = 0; //Main menu
+        //updateGameState(0); //Main menu
         paused = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && gameState != 0)
@@ -37,20 +36,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void updateGameState(int temp)
+    public void updateGameState(int gameState)
     {
-        gameState = temp;
-        if (!paused)
+        if (!paused) // If the game is not paused, update the gameState
         {
-
-        }
-        if (gameState == 0) // Main Menu
-        {
-            mainMenu.SetActive(true);
-        } 
-        else if (gameState == 1) // Tutorial
-        {
-            mainMenu.SetActive(false);
+            if (gameState == 0) // Main Menu
+            {
+                mainMenu.SetActive(true);
+                
+            }
+            else if (gameState == 1) // Tutorial
+            {
+                mainMenu.SetActive(false);
+                Instantiate(Player, new Vector3(-0.5f, 0.204999998f, 19.4200001f), Quaternion.Euler(new Vector3(0, 0, 180)));
+            }
         }
     }
   
