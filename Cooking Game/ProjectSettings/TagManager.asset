@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Counter
+  - Sink
+  - Computer
+  - Fridge
+  - Plate
+  - Shelf
+  - Pan
   layers:
   - Default
   - TransparentFX

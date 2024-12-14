@@ -5,33 +5,30 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject pauseText;
+    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject Player;
     public int gameState;
-    private bool paused;
+    public bool paused;
+    public bool inMenu;
     
 
     void Start()
     {
-        //updateGameState(0); //Main menu
+        updateGameState(0); //Main menu
         paused = false;
+        inMenu = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && gameState != 0)
+        if (Input.GetKey(KeyCode.P))
         {
             if (!paused)
             {
                 paused = true;
-                pauseText.SetActive(true);
+                pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
-            }
-            else
-            {
-                paused = false;
-                pauseText.SetActive(false);
-                Time.timeScale = 1f;
+                unlockCursor();
             }
         }
     }
@@ -43,15 +40,30 @@ public class GameManager : MonoBehaviour
             if (gameState == 0) // Main Menu
             {
                 mainMenu.SetActive(true);
-                
+                Player.SetActive(false);
+
             }
             else if (gameState == 1) // Tutorial
             {
                 mainMenu.SetActive(false);
-                Instantiate(Player, new Vector3(-0.5f, 0.204999998f, 19.4200001f), Quaternion.Euler(new Vector3(0, 0, 180)));
+                Player.SetActive(true);
+                lockCursor();
             }
         }
     }
-  
+    
+    public void lockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
-}
+    public void unlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+   
+
+} // End Class
